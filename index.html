@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bat Ball Stump Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .choices button {
+            font-size: 20px;
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bat Ball Stump Game</h1>
+    <div class="choices">
+        <button onclick="playGame('Bat')">Bat</button>
+        <button onclick="playGame('Ball')">Ball</button>
+        <button onclick="playGame('Stump')">Stump</button>
+    </div>
+    <p id="result"></p>
+    
+    <script>
+        function playGame(userChoice) {
+            const choices = ['Bat', 'Ball', 'Stump'];
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+            
+            let result = '';
+            
+            if (userChoice === computerChoice) {
+                result = "It's a Draw!";
+            } else if (
+                (userChoice === 'Bat' && computerChoice === 'Ball') ||
+                (userChoice === 'Ball' && computerChoice === 'Stump') ||
+                (userChoice === 'Stump' && computerChoice === 'Bat')
+            ) {
+                result = `You Win! ${userChoice} defeats ${computerChoice}`;
+            } else {
+                result = `You Lose! ${computerChoice} defeats ${userChoice}`;
+            }
+            
+            document.getElementById("result").innerText = `You chose ${userChoice}, Computer chose ${computerChoice}. \n${result}`;
+        }
+    </script>
+</body>
+</html>
